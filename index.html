@@ -27,7 +27,7 @@
  
     
        client.upload.addEventListener("progress", (e)=>{
-        console.log(e.loaded)
+        console.log(`Current Transfer: ${e.loaded/e.total*100}%`);
        });
        client.open("post",'/fileupload', true);
        client.setRequestHeader("Content-Type", "multipart/form-data");
