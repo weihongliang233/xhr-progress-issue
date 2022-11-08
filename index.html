@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload File</title>
+<style>
+    body{text-align:center;} 
+    form{display:block;border:1px solid black;padding:20px;} 
+</style>
+</head>
+<body>
+    <h1>Upload files to Node.js Server</h1>
+        <input type="file" name="filetoupload" id="uploadfile">
+        <button title="submit" onclick="upload()" >upload</button>
+</body>
+</html>
+<script>
+    var client = new XMLHttpRequest();
+ 
+    function upload() 
+    {
+       var file = document.getElementById("uploadfile");
+ 
+       /* Create a FormData instance */
+       var fd = new FormData();
+       /* Add the file */ 
+       fd.append("upload", file.files[0]);
+ 
+    
+       client.upload.addEventListener("progress", (e)=>{
+        console.log(e.loaded)
+       });
+       client.open("post",'/fileupload', true);
+       client.setRequestHeader("Content-Type", "multipart/form-data");
+       client.send(fd);  /* Send to server */ 
+    }
+ 
+    /* Check the response status */  
+    client.onreadystatechange = function() 
+    {
+       if (client.readyState == 4 && client.status == 200) 
+       {
+          alert(client.statusText);
+       }
+    }
+ </script>
+ 
