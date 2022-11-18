@@ -56,6 +56,14 @@ client.setRequestHeader("Content-Type", "multipart/form-data");
 client.send(fd);
 ```
 
+## Similar issue
+
+[Wrong upload progress event raising · Issue #127 · whatwg/xhr (github.com)](https://github.com/whatwg/xhr/issues/127)
+
+[javascript - XMLHttpRequest wrong progress - Stack Overflow](https://stackoverflow.com/questions/42516195/xmlhttprequest-wrong-progress)
+
+## Discuss
+
  The [documentation](https://xhr.spec.whatwg.org/#suggested-names-for-events-using-the-progressevent-interface) mentions that the error event will be dispatched "After the last progress has been dispatched", which means the progress `loaded/total` will grow to 100% even if the network interrupts. 
 
 If someone builds a progress bar indicating the upload progress and then the network interrupts, then the progress bar will immediately grow to 100%. I think it is quite a strange behavior. 
@@ -63,3 +71,4 @@ If someone builds a progress bar indicating the upload progress and then the net
 My expect: Network interrupts, the upload progress terminates immediately, the `loaded` immediately stop growing and stuck to current value, then the error event occurs.
 
 Could anyone explain why the `loaded/total` is designed to grow to 100% even if the network interrupts? And how can i build a progress bar which will stuck immediately when the network interrupts.
+
