@@ -2,6 +2,9 @@
 
 This repo is used to describe the strange behavior of xhr upload progress.
 
+Check this issue [Wrong upload progress when network interrupts · Issue #361 · whatwg/xhr (github.com)](https://github.com/whatwg/xhr/issues/361).
+
+
 ## Problem
 
 [We can monitor the xhr upload progress with `loaded` and `total`.](https://stackoverflow.com/questions/76976/how-to-get-progress-from-xmlhttprequest/3694435#3694435)
